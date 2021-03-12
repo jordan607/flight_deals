@@ -8,11 +8,12 @@ from data_manager import DataManager
 from flight_search import FlightSearch
 from flight_data import FlightData
 from notification_manager import NotificationManager
+from ui import User_Interface
 
 IATA_codes = []
 
+users_email = User_Interface().interface()
 #Data from sheets
-
 sheet_data = DataManager()
 get_sheet_data = sheet_data.get_sheet_data()
 #print(get_sheet_data)
@@ -26,7 +27,7 @@ flight_details = FlightData().flight_data(IATA_codes)
 for sheet_comp in get_sheet_data:
     for flight_comp in flight_details:
         if sheet_comp["city"] == flight_comp["city_TO"] and sheet_comp["lowestPrice"]> flight_comp["price"]:
-            NotificationManager(flight_comp).email()
+            NotificationManager(flight_comp,users_email).email()
 
 
 

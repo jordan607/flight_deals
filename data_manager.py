@@ -21,6 +21,8 @@ class DataManager:
                 }
             }
             response = requests.put(url=f"{self.sheets_url}/{self.sheets_response[i]['id']}",json=data)
-
+    def get_users(self):
+        response = requests.get(url="https://api.sheety.co/3d4ccf78fe421270fe5ea15bdc02e39f/flightDeals/users")
+        return [users["email"] for users in response.json()["users"]]
 
 
