@@ -12,7 +12,7 @@ class FlightData:
         self.date_from = (dt.date.today() + dt.timedelta(days = 1)).strftime("%d/%m/%Y"),
         self.date_to = (dt.date.today() + dt.timedelta(days = 180)).strftime("%d/%m/%Y")
         self.flight_type = "round"
-        self.max_stopovers = 0
+        self.max_stopovers = 0 #indicates direct flight
         self.nights_in_dst_from= 7
         self.nights_in_dst_to = 28
         self.sort = "price"
