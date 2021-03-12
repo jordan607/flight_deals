@@ -41,21 +41,29 @@ class FlightData:
         }
         for destination in destination_list:
             self.parameters["fly_to"] = destination
+            try:
+                flight_response = requests.get(self.flight_url, params=self.parameters)
+            except IndexError:
+                print("Data not available")
+                return None
+            except:
+                print("No Flights")
+                return None
+            else:
 
-            flight_response = requests.get(self.flight_url, params=self.parameters)
-            data = flight_response.json()["data"][0]
-            city_From = data["cityFrom"]
-            city_Code_From = data["cityCodeFrom"]
-            city_TO= data["cityTo"]
-            city_Code_TO=data["cityCodeTo"]
+                data = flight_response.json()["data"][0]
+                city_From = data["cityFrom"]
+                city_Code_From = data["cityCodeFrom"]
+                city_TO= data["cityTo"]
+                city_Code_TO=data["cityCodeTo"]
 
-            price = data["price"]
-            departure_date = data["local_departure"].split("T")[0]
-            arrival_date = data["route"][1]["local_departure"].split("T")[0]
-            city_dict = {"city_TO": city_TO, "price": price, "city_From" : city_From, "city_Code_From" : city_Code_From,
-                         "city_Code_TO" : city_Code_TO, "departure_date": departure_date,
-                         "arrival_date": arrival_date}
-            self.list_of_data.append(city_dict)
+                price = data["price"]
+                departure_date = data["local_departure"].split("T")[0]
+                arrival_date = data["route"][1]["local_departure"].split("T")[0]
+                city_dict = {"city_TO": city_TO, "price": price, "city_From" : city_From, "city_Code_From" : city_Code_From,
+                             "city_Code_TO" : city_Code_TO, "departure_date": departure_date,
+                             "arrival_date": arrival_date}
+                self.list_of_data.append(city_dict)
         return self.list_of_data
 
 

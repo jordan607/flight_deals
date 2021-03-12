@@ -19,8 +19,8 @@ class NotificationManager:
                 connection.sendmail(
                     from_addr=self.my_email,
                     to_addrs=receivers,
-                    msg=f"Subject: Low Price Alert !!! \n\n Only {self.flight['price']} pounds"
+                    msg=f"Subject: Low Price Alert !!! \n\n Only £{self.flight['price']} pounds"
                         f"to fly from  {self.flight['city_From']}-{self.flight['city_Code_From']}"
                         f" to {self.flight['city_TO']}-{self.flight['city_Code_TO']}, "
-                        f"from {self.flight['departure_date']} to {self.flight['arrival_date']}",
+                        f"from {self.flight['departure_date']} to {self.flight['arrival_date']}".encode('utf-8')
                 )

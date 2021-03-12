@@ -25,9 +25,13 @@ class User_Interface:
     }
 
     if self.email == self.conf_email:
-      print(self.parameters)
-      requests.post(self.user_url, json = self.parameters)
-      print("You are in the club!")
+
+      try:
+        requests.post(self.user_url, json = self.parameters)
+      except:
+        print("unable to add user")
+      else:
+        print("You are in the club!")
 
 
 
