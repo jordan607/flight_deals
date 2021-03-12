@@ -1,7 +1,9 @@
 import smtplib
-#£
+
+
+# £
 class NotificationManager:
-    #This class is responsible for sending notifications with the deal flight details.
+    # This class is responsible for sending notifications with the deal flight details.
 
     def __init__(self, flight_details, users_email):
         self.flight = flight_details
@@ -9,12 +11,10 @@ class NotificationManager:
         self.subscribers = users_email
         self.password = ""
 
-
-
     def email(self):
         with smtplib.SMTP("outlook.office365.com") as connection:
             connection.starttls()
-            connection.login(user=self.my_email,password=self.password)
+            connection.login(user=self.my_email, password=self.password)
             for receivers in self.subscribers:
                 connection.sendmail(
                     from_addr=self.my_email,
